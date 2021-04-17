@@ -20,27 +20,20 @@ class BoundingBox extends StatelessWidget {
         var _w = re["rect"]["w"];
         var _y = re["rect"]["y"];
         var _h = re["rect"]["h"];
-        var scaleW, scaleH, x, y, w, h;
-        print(_x.toString() + " "+  _y.toString() + " via" + re["detectedClass"]);
-        if (screenH / screenW > previewH / previewW) {
-          scaleW = screenH / previewH * previewW;
-          scaleH = screenH;
-          var difW = (scaleW - screenW) / scaleW;
-          x = (_x - difW / 2) * scaleW;
-          w = _w * scaleW;
-          if (_x < difW / 2) w -= (difW / 2 - _x) * scaleW;
-          y = _y * scaleH;
-          h = _h * scaleH;
-        } else {
-          scaleH = screenW / previewW * previewH;
-          scaleW = screenW;
-          var difH = (scaleH - screenH) / scaleH;
-          x = _x * scaleW;
-          w = _w * scaleW;
-          y = (_y - difH / 2) * scaleH;
-          h = _h * scaleH;
-          if (_y < difH / 2) h -= (difH / 2 - _y) * scaleH;
-        }
+        var  x, y, w, h;
+
+          x=_x*previewW;
+          x=x-x/2.7;
+          y=_y*previewH ;
+          y=y-y/2.7;
+          print(x.toString()+ "  "+ y.toString());
+          
+          w = _w * previewW;
+          w = w - w/2.7;
+          h = _h * previewH;
+          h = h - h/2.7;
+          print(w.toString()+ " - lunghezza "  + h.toString()+" - altezza "+_h.toString()+"- altezza scala 1 "+previewH.toString()+" altezza screeen");
+
 
         return Positioned(
           left: math.max(0, x),
