@@ -7,6 +7,11 @@ import 'dart:math' as math;
 
 const String ssd = "SSD MobileNet";
 const String ssd2 = "SSD MobileNet v2";
+List<String> bandiere = ["🇬🇧","🇮🇹"];
+List<String> start = ["start","inzia"];
+List<String> lingua = ["Language: ","Lingua: "];
+int flaglingua = 0;
+
 
 class HomeScreen extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -76,7 +81,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     children: <Widget>[
                       SizedBox(
-                        height: screen.height/4,
+                        height: screen.height/10,
+                      ),
+                      GestureDetector(
+                        child:Text(lingua[flaglingua]+""+bandiere[flaglingua],style: TextStyle(fontSize: 25,color:  Colors.white)),
+                        onTap: () {
+                          setState(() {
+                            if(flaglingua==1){
+                              flaglingua=0;
+                            }
+                            else{
+                              flaglingua=1;
+                            }
+                          });
+                        }
+                      ),
+                      SizedBox(
+                        height: screen.height/7,
                       ),
                       Text(
                         "Reduce", style: TextStyle(fontSize: 60,color: Colors.white,fontWeight:FontWeight.bold ),
@@ -113,13 +134,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       Row(
                         children: <Widget>[
                           SizedBox(width: screen.width/20,),
-                          Text("Start", style: TextStyle(color: Colors.green,fontSize: 30),),
-                          SizedBox(width: screen.width/20,),
+                          Text(start[flaglingua], style: TextStyle(color: Colors.green,fontSize: 30),),
+                          SizedBox(width: screen.width/24,),
                           Icon(Icons.spa, color: Colors.green,),
                           SizedBox(width: screen.width/20,),
                         ],
                       )
                   ),
+
                 )
               ],
             ),

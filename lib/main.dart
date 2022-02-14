@@ -1,11 +1,12 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:ecoapp/HomeScreen.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 List<CameraDescription> cameras;
-
 Future<Null> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   try {
     cameras = await availableCameras();
   } on CameraException catch (e) {
