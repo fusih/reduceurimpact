@@ -4,9 +4,14 @@ import 'package:ecoapp/HomeScreen.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 List<CameraDescription> cameras;
+List<String> testDeviceIds = ['DEVICEID'];
 Future<Null> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
+  RequestConfiguration configuration =
+      RequestConfiguration(testDeviceIds: testDeviceIds);
+  MobileAds.instance.updateRequestConfiguration(configuration);
+
   try {
     cameras = await availableCameras();
   } on CameraException catch (e) {
